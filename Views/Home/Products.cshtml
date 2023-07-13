@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Product>
+@{
+	ViewBag.Title = "Products";
+}
+<h1>Products</h1>
+<div class="container">
+	<a asp-action="AddProductView" asp-controller="Home" class="btn btn-outline-primary" style="float:right" >Add New</a><br /><br />
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>
+					Product Name
+				</th>
+				<th>
+					Actions
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var Item in Model)
+			{
+
+					<tr>
+						<td>
+						@Item.ProductName
+						</td>
+						<td>
+						@Html.ActionLink("Edit","AddProductView",new{Item.ProductName,Item.ProductId,Item.CategoryId},new{@class="btn btn-primary"}) |
+						@Html.ActionLink("Delete","DeleteProduct",new{Item.ProductId},new{@class="btn btn-danger"})
+						</td>
+					</tr>
+			}
+		</tbody>
+	</table>
+</div>

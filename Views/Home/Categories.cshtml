@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Category>
+@{
+	ViewBag.Title = "Categories";
+}
+
+<h1>Categories</h1>
+
+<div class="container">
+	<a asp-action="AddCategoryView" asp-controller="Home" class="btn btn-outline-primary" style="float:right">Add New</a>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>
+					Category Name
+				</th>
+				<th>
+					Actions
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var category in Model)
+			{
+					<tr>
+						<td>
+						@category.CategoryName
+						</td>
+						<td>
+						@Html.ActionLink("Edit","AddCategoryView",new{category.CategoryName,category.CategoryId},new{@class = "btn btn-primary"})
+						@Html.ActionLink("Delete","DeleteCategory",new{category.CategoryId},new {@class = "btn btn-danger"})
+						</td>
+					</tr>				
+			}
+		</tbody>
+	</table>
+</div>

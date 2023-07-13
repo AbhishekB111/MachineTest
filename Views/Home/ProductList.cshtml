@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ProductList>
+@{
+	ViewBag.Title = "Product List";
+}
+
+<h1>Product List</h1>
+
+@using (Html.BeginForm("ProductList", "Home", FormMethod.Get))
+{
+
+			<b>Page Size :</b> 
+
+
+		<select asp-items = "@(new SelectList(ViewBag.PageSize))" class="form-control col-sm-1" name="PageSize" required ></select>
+
+				<b>Page No :</b> 
+
+			<select asp-items="@(new SelectList(ViewBag.PageNo))" class="form-control col-sm-1" name="PageNo"></select>
+
+		<input type = "submit" value="Search" class="btn btn-outline-primary" style="float:right" />
+		<br />
+		<br />
+
+}
+
+<div >
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>
+					ProductId
+				</th>
+				<th>
+					ProductName
+				</th>
+				<th>
+					CategoryId
+				</th>
+				<th>
+					Category Name
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var product in Model)
+			{
+					<tr>
+						<td>
+						@product.ProductId
+						</td>
+						<td>
+						@product.ProductName
+						</td>
+						<td>
+						@product.CategoryId
+						</td>
+						<td>
+						@product.CategoryName
+						</td>
+					</tr>
+			}
+		</tbody>
+	</table>
+</div>
